@@ -12,3 +12,4 @@ D:\C#\Pruebas\obj\Debug\net8.0\refint\Pruebas.dll
 D:\C#\Pruebas\obj\Debug\net8.0\Pruebas.pdb
 D:\C#\Pruebas\obj\Debug\net8.0\Pruebas.genruntimeconfig.cache
 D:\C#\Pruebas\obj\Debug\net8.0\ref\Pruebas.dll
+D:\C#\Pruebas\obj\Debug\net8.0\Pruebas.sourcelink.json

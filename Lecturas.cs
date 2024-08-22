@@ -6,13 +6,14 @@ using System.IO;
 
 namespace Pruebas
 {
-    public class Lecturas
+    public class Lecturas : IDisposable
     {
         StreamReader archivo;
         StreamWriter log;
 
         public Lecturas(){
-            archivo = new StreamReader("pruebas.cpp");
+            System.Console.WriteLine("Constructor 1");
+            archivo = new StreamReader("prueba.cpp");
             log = new StreamWriter("prueba.log");
         }
 
@@ -22,5 +23,15 @@ namespace Pruebas
 
         }
     
+        public void Dispose(){
+            archivo.Close();
+            log.Close();
+        }
+
+        public void Display(){
+            while(!archivo.EndOfStream){
+                Console.Write((char)archivo.Read());
+            }
+        }
     }
 }

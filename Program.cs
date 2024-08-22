@@ -9,7 +9,10 @@ namespace Pruebas
     {
         static void Main(string[] args) 
         {
-            Lecturas L = new Lecturas("suma.cpp");
+           using (Lecturas L = new Lecturas("prueba.cpp")){
+            L.Display();
+           }
+            /* Lecturas L = new Lecturas(); */
         }
     }
 }
