@@ -10,7 +10,8 @@ namespace Pruebas
         static void Main(string[] args) 
         {
            using (Lecturas L = new Lecturas("prueba.cpp")){
-            L.Display();
+            /* L.Encrypt(); */
+            L.Desencrypt('e');
            }
             /* Lecturas L = new Lecturas(); */
         }
