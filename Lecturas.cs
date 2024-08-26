@@ -57,20 +57,23 @@ namespace Pruebas
 
         public void Desencrypt(char v){
             char c;
-            char[] voc={'A','E','I','O','U'};
+            char[] vocales = {'A','E','I','O','U' };
             
             while(!archivo.EndOfStream){
-                c=char.ToUpper((char)archivo.Read());
-                
+                c=(char)archivo.Read();
+                bool vocal = false;
+                foreach (var i in vocales)
+                {
+                    if (char.IsLetter(c) && char.ToUpper(c).ToString().Contains(i)){
+                        log.Write((char)(v));
+                        vocal = true;
+                        break;
+                    }
+                }
 
-                for (int i = 0; i <voc.Length; i++)
-                {
-                    if (char.IsLetter(c)&&char.IsLetter(c).Equals(voc[i]))
-                {
-                    log.Write((char)(v));    
-                }else{
-                    log.Write(c);
-                }        
+                if (!vocal)
+                {  
+                    log.Write(char.ToUpper(c));
                 }
             }
         }
