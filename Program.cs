@@ -11,7 +11,11 @@ namespace Pruebas
         {
            using (Lecturas L = new Lecturas("prueba.cpp")){
             /* L.Encrypt(); */
-            L.Desencrypt('O');
+            /* L.Desencrypt('O'); */
+
+            //System.Console.WriteLine("El número de letras es: "+L.contarLetras());
+            System.Console.WriteLine(L.PrimerCaracter());
+
            }
             /* Lecturas L = new Lecturas(); */
         }

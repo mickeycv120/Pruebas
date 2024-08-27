@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection.PortableExecutable;
+using System.Text;
 
 namespace Pruebas
 {
@@ -12,59 +13,73 @@ namespace Pruebas
         StreamReader archivo;
         StreamWriter log;
 
-        public Lecturas(){
+        public Lecturas()
+        {
             System.Console.WriteLine("Constructor 1");
             archivo = new StreamReader("prueba.cpp");
             log = new StreamWriter("prueba.log");
         }
 
-        public Lecturas(string nombre){
+        public Lecturas(string nombre)
+        {
             archivo = new StreamReader(nombre);
             log = new StreamWriter("prueba.log");
 
         }
-    
-        public void Dispose(){
+
+        public void Dispose()
+        {
             archivo.Close();
             log.Close();
         }
 
-        public void Display(){
-            while(!archivo.EndOfStream){
+        public void Display()
+        {
+            while (!archivo.EndOfStream)
+            {
                 Console.Write((char)archivo.Read());
             }
         }
-        
-        public void Copy(){
-            while(!archivo.EndOfStream){
+
+        public void Copy()
+        {
+            while (!archivo.EndOfStream)
+            {
                 log.Write((char)archivo.Read());
             }
         }
 
-        public void Encrypt(){
+        public void Encrypt()
+        {
             char c;
-            while(!archivo.EndOfStream){
-                c=(char)archivo.Read();
+            while (!archivo.EndOfStream)
+            {
+                c = (char)archivo.Read();
                 if (char.IsLetter(c))
                 {
-                    log.Write((char)(c+2));    
-                }else{
+                    log.Write((char)(c + 2));
+                }
+                else
+                {
                     log.Write(c);
                 }
-                
+
             }
         }
 
-        public void Desencrypt(char v){
+        public void Desencrypt(char v)
+        {
             char c;
-            char[] vocales = {'A','E','I','O','U' };
-            
-            while(!archivo.EndOfStream){
-                c=(char)archivo.Read();
+            char[] vocales = { 'A', 'E', 'I', 'O', 'U' };
+
+            while (!archivo.EndOfStream)
+            {
+                c = (char)archivo.Read();
                 bool vocal = false;
                 foreach (var i in vocales)
                 {
-                    if (char.IsLetter(c) && char.ToUpper(c).ToString().Contains(i)){
+                    if (char.IsLetter(c) && char.ToUpper(c).ToString().Contains(i))
+                    {
                         log.Write((char)(v));
                         vocal = true;
                         break;
@@ -72,11 +87,70 @@ namespace Pruebas
                 }
 
                 if (!vocal)
-                {  
+                {
                     log.Write(char.ToUpper(c));
                 }
             }
         }
 
+        public int contarLetras()
+        {
+            int contarLetras=0;
+            while (!archivo.EndOfStream)
+            {
+                char c=(char)archivo.Read();
+                if (char.IsLetter(c))
+                {
+                    contarLetras++;	
+                }
+            }
+            return contarLetras;
+        }
+
+        public int contarDigitos()
+        {
+            int contarLetras=0;
+            while (!archivo.EndOfStream)
+            {
+                char c=(char)archivo.Read();
+                if (char.IsDigit(c))
+                {
+                    contarLetras++;	
+                }
+            }
+            return contarLetras;
+        }
+
+        public int contarEspacios()
+        {
+            int contarLetras=0;
+            while (!archivo.EndOfStream)
+            {
+                char c=(char)archivo.Read();
+                if (char.IsWhiteSpace(c))
+                {
+                    contarLetras++;	
+                }
+            }
+            return contarLetras;
+        }
+
+        public dynamic PrimerCaracter()
+        {
+            dynamic d = "Empty";
+            while (!archivo.EndOfStream)
+            {
+                char c = (char)archivo.Read();
+                if (!char.IsWhiteSpace(c))
+                {
+                       d = c;
+                       break;
+                }else if(archivo.EndOfStream){
+                    break;
+                }
+            }
+
+            return d;
+        }
     }
 }
