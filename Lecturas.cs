@@ -138,19 +138,22 @@ namespace Pruebas
         public dynamic PrimerCaracter()
         {
             dynamic d = "Empty";
-            while (!archivo.EndOfStream)
+            string buffer = "";
+            char c;
+            while (char.IsWhiteSpace(c = (char)archivo.Read()) && !archivo.EndOfStream)
             {
-                char c = (char)archivo.Read();
-                if (!char.IsWhiteSpace(c))
-                {
-                       d = c;
-                       break;
-                }else if(archivo.EndOfStream){
-                    break;
-                }
+                       
             }
 
-            return d;
+            if(char.IsLetter(c)){
+                buffer +=c;
+                while (char.IsLetter(c = (char)archivo.Read()) && !archivo.EndOfStream)
+                {
+                    buffer +=c;
+                }
+            }
+            log.WriteLine(buffer);
+            return buffer.ToString();
         }
     }
 }
